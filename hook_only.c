@@ -31,6 +31,7 @@ typedef struct HashTable {
 #define ELF_R_SYM(i) ((i) >> 32)
 
 HashTable *hashtable = NULL;
+HashTable *hashtable_without_base = NULL;
 
 __attribute__((no_instrument_function))
 unsigned int hash(uintptr_t key) {
@@ -135,6 +136,7 @@ static int elfdump(char *head) {
             if (!symp->st_name) continue;
             char *symname = (char*)(head + str->sh_offset + symp->st_name);
             insert(hashtable, symp->st_value + load_addr, symname);
+            insert(hashtable_without_base, symp->st_value, symname);
 
 //            printf("\t[%d]\t%d\t%d\t%s\n", j, (int)ELF_ST_TYPE(symp->st_info), symp->st_size, (char*)(head + str->sh_offset + symp->st_name));
         }
@@ -191,6 +193,7 @@ __cyg_profile_func_enter (void *this_fn, void *call_site)
     if (called == 0) {
         called = 1;
         hashtable = create_hashtable();
+        hashtable_without_base = create_hashtable();
         // Get the filename of the executable
 
         char path[256], exe[256];
@@ -215,7 +218,15 @@ __cyg_profile_func_enter (void *this_fn, void *call_site)
     }
 
     uintptr_t ptr = (uintptr_t) this_fn;
-    printf("%s is called\n", find(hashtable, ptr));
+    char *fname;
+    fname = find(hashtable, ptr);
+    if (fname) {
+        printf("%s is called\n", fname);
+    }
+    fname = find(hashtable_without_base, ptr);
+    if (fname) {
+        printf("%s is called\n", fname);
+    }
 }
 
 void __attribute__((no_instrument_function))
