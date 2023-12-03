@@ -39,7 +39,6 @@ unsigned int hash(uintptr_t key) {
 
 __attribute__((no_instrument_function))
 HashTable* create_hashtable() {
-    printf("create called\n");
     HashTable* hashtable = calloc(1, sizeof(HashTable));
     if (hashtable == NULL) {
         printf("Failed to allocate memory for hashtable\n");
@@ -76,14 +75,12 @@ __attribute__((no_instrument_function))
 char* find(HashTable* hashtable, uintptr_t key) {
     unsigned int index = hash(key);
     Node* node = hashtable->nodes[index];
-    printf("before while\n");
     while (node != NULL) {
         if (node->key == key) {
             return node->value;
         }
         node = node->next;
     }
-    printf("after while\n");
     return NULL;
 }
 
@@ -110,26 +107,25 @@ static int elfdump(char *head) {
     for (i = 0; i < ehdr->e_shnum; i++) {
         shdr = (Elf64_Shdr *)(head + ehdr->e_shoff + ehdr->e_shentsize * i);
         sname = (char *)(head + shstr->sh_offset + shdr->sh_name);
-        printf("\t[%d]\t%s\n", i, sname);
+//        printf("\t[%d]\t%s\n", i, sname);
         if (!strcmp(sname, ".strtab")) str = shdr;
     }
 
-    printf("Segments:\n");
-    for (i = 0; i < ehdr->e_phnum; i++) {
-        phdr = (Elf64_Phdr *)(head + ehdr->e_phoff + ehdr->e_phentsize * i);
-        printf("\t[%d]\t", i);
-        for (j = 0; j < ehdr->e_shnum; j++) {
-            shdr = (Elf64_Shdr *)(head + ehdr->e_shoff + ehdr->e_shentsize * j);
-            size = (shdr->sh_type != SHT_NOBITS) ? shdr->sh_size : 0;
-            if (shdr->sh_offset < phdr->p_offset) continue;
-            if (shdr->sh_offset + size > phdr->p_offset + phdr->p_filesz) continue;
-            sname = (char *)(head + shstr->sh_offset + shdr->sh_name);
-            printf("%s ", sname);
-        }
-        printf("\n");
-    }
+//    printf("Segments:\n");
+//    for (i = 0; i < ehdr->e_phnum; i++) {
+//        phdr = (Elf64_Phdr *)(head + ehdr->e_phoff + ehdr->e_phentsize * i);
+//        printf("\t[%d]\t", i);
+//        for (j = 0; j < ehdr->e_shnum; j++) {
+//            shdr = (Elf64_Shdr *)(head + ehdr->e_shoff + ehdr->e_shentsize * j);
+//            size = (shdr->sh_type != SHT_NOBITS) ? shdr->sh_size : 0;
+//            if (shdr->sh_offset < phdr->p_offset) continue;
+//            if (shdr->sh_offset + size > phdr->p_offset + phdr->p_filesz) continue;
+//            sname = (char *)(head + shstr->sh_offset + shdr->sh_name);
+//            printf("%s ", sname);
+//        }
+//        printf("\n");
+//    }
 
-    printf("Symbols:\n");
     for (i = 0; i < ehdr->e_shnum; i++) {
         shdr = (Elf64_Shdr *)(head + ehdr->e_shoff + ehdr->e_shentsize * i);
         if (shdr->sh_type != SHT_SYMTAB) continue;
@@ -138,15 +134,9 @@ static int elfdump(char *head) {
             symp = (Elf64_Sym *) (head + sym->sh_offset + sym->sh_entsize * j);
             if (!symp->st_name) continue;
             char *symname = (char*)(head + str->sh_offset + symp->st_name);
-            printf("symname: %s\n", symname);
-            if (strcmp(symname, "main") == 0) {
-                printf("address found!!!\n");
-                printf("Runtime address of the function: %lx\n", symp->st_value);
-                main_addr = symp->st_value;
-            }
             insert(hashtable, symp->st_value + load_addr, symname);
 
-            printf("\t[%d]\t%d\t%d\t%s\n", j, (int)ELF_ST_TYPE(symp->st_info), symp->st_size, (char*)(head + str->sh_offset + symp->st_name));
+//            printf("\t[%d]\t%d\t%d\t%s\n", j, (int)ELF_ST_TYPE(symp->st_info), symp->st_size, (char*)(head + str->sh_offset + symp->st_name));
         }
     }
 
@@ -199,7 +189,7 @@ __cyg_profile_func_enter (void *this_fn, void *call_site)
     struct stat sb;
     char *head;
     if (called == 0) {
-
+        called = 1;
         hashtable = create_hashtable();
         // Get the filename of the executable
 
@@ -211,7 +201,7 @@ __cyg_profile_func_enter (void *this_fn, void *call_site)
         strncpy(exe, basename(path), sizeof(exe));
 
         get_load_addr(path);
-        printf("loaded: %p\n", (int *)load_addr);
+//        printf("loaded: %p\n", (int *)load_addr);
 
 
         int fd = open(path, O_RDONLY);
@@ -223,15 +213,14 @@ __cyg_profile_func_enter (void *this_fn, void *call_site)
 
         elfdump(head);
     }
-    printf("enter: %p\n", (int *)this_fn);
+
     uintptr_t ptr = (uintptr_t) this_fn;
-    printf("called function name is %s", find(hashtable, ptr));
-    printf("[+]\n");
+    printf("%s is called\n", find(hashtable, ptr));
 }
 
 void __attribute__((no_instrument_function))
 __cyg_profile_func_exit  (void *this_fn, void *call_site)
 {
-    printf("[-]\n");
+//    printf("[-]\n");
 }
 
