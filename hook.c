@@ -54,6 +54,8 @@ dump_func(void* map, uintptr_t func_addr, void* frame_addr) {
 
 int called = 0;
 uintptr_t load_addr;
+char path[256];
+void *addr2func;
 
 void __attribute__((no_instrument_function))
 __cyg_profile_func_enter (void *this_fn, void *call_site)
@@ -62,7 +64,7 @@ __cyg_profile_func_enter (void *this_fn, void *call_site)
         called = 1;
 
         // Get the filename of the executable
-        char path[256], exe[256];
+        char exe[256];
         ssize_t len = readlink("/proc/self/exe", path, sizeof(path)-1);
         if (len != -1) {
             path[len] = '\0';
@@ -70,9 +72,9 @@ __cyg_profile_func_enter (void *this_fn, void *call_site)
         strncpy(exe, basename(path), sizeof(exe));
 
         load_addr = get_load_addr(path);
+        addr2func = get_addr2func(path);
     }
-
-    void *addr2func = get_addr2func("/home/jp31281/ftrace/test");
+    
     dump_func(addr2func, (uintptr_t) this_fn - load_addr, __builtin_frame_address(1));
 }
 
