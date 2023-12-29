@@ -26,6 +26,25 @@ uintptr_t get_load_addr(char* path) {
     }
 }
 
+void __attribute__((no_instrument_function))
+dump_value(Type typ, void* abs_addr) {
+    printf("actual value: ");
+    if (strcmp(typ.name, "int") == 0) {
+        printf("%d", *((int*) abs_addr));
+    } else if (strcmp(typ.name, "long long int") == 0) {
+        printf("%lld", *((long long*) abs_addr));
+    } else if (strcmp(typ.name, "long int") == 0) {
+        printf("%ld", *((long*) abs_addr));
+    } else if (strcmp(typ.name, "char") == 0) {
+        printf("%s", (char*) abs_addr);
+    } else if (strcmp(typ.name, "Ptr") == 0) {
+        int** ptr_to_ptr_to_int = (int**) abs_addr; // Pointer to "pointer to int"
+        int* ptr_to_int = *ptr_to_ptr_to_int; // Pointer to int
+        printf("%p -> ", (void*)ptr_to_int);
+        int int_val = *ptr_to_int; // int
+        printf("%d", int_val);
+    }
+}
 
 void __attribute__((no_instrument_function))
 dump_func(void* map, uintptr_t func_addr, void* frame_addr) {
@@ -43,22 +62,11 @@ dump_func(void* map, uintptr_t func_addr, void* frame_addr) {
         printf("name: %s\n", arg.name);
         printf("bytes_cnt: %lu\n", arg.bytes_cnt);
         printf("location: %ld\n", arg.location);
-        printf("type_name: %s\n", arg.type_name);
+        printf("typ.name: %s\n", arg.typ.name);
         // dinfoで得られるoffset の値 + 16、ということ？
         // https://qiita.com/mhiramat/items/8df17f5113434e93ff0c
         void *abs_addr = frame_addr + 16 + arg.location;
-        printf("actual value: ");
-        if (strcmp(arg.type_name, "int") == 0) {
-            printf("%d", *((int*) abs_addr));
-        } else if (strcmp(arg.type_name, "long long int") == 0) {
-            printf("%lld", *((long long*) abs_addr));
-        } else if (strcmp(arg.type_name, "long int") == 0) {
-            printf("%ld", *((long*) abs_addr));
-        } else if (strcmp(arg.type_name, "char") == 0) {
-            printf("%s", (char*) abs_addr);
-        } else if (strcmp(arg.type_name, "Ptr[int]") == 0) {
-            printf("%p", (void *) abs_addr);
-        }
+        dump_value(arg.typ, abs_addr);
 
         printf("\n\n");
     }
