@@ -47,16 +47,17 @@ dump_func(void* map, uintptr_t func_addr, void* frame_addr) {
         // dinfoで得られるoffset の値 + 16、ということ？
         // https://qiita.com/mhiramat/items/8df17f5113434e93ff0c
         void *abs_addr = frame_addr + 16 + arg.location;
+        printf("actual value: ");
         if (strcmp(arg.type_name, "int") == 0) {
-            printf("actual value: %d", *((int*) abs_addr));
+            printf("%d", *((int*) abs_addr));
         } else if (strcmp(arg.type_name, "long long int") == 0) {
-            printf("actual value of long long: %lld", *((long long*) abs_addr));
+            printf("%lld", *((long long*) abs_addr));
         } else if (strcmp(arg.type_name, "long int") == 0) {
-            printf("actual value of long: %ld", *((long*) abs_addr));
+            printf("%ld", *((long*) abs_addr));
         } else if (strcmp(arg.type_name, "char") == 0) {
-            printf("actual value of char: %s", (char*) abs_addr);
+            printf("%s", (char*) abs_addr);
         } else if (strcmp(arg.type_name, "Ptr[int]") == 0) {
-            printf("actual value of ptr: %p", (void *) abs_addr);
+            printf("%p", (void *) abs_addr);
         }
 
         printf("\n\n");
