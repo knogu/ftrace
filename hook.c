@@ -4,12 +4,8 @@
 #include <libgen.h>
 #include "test.h"
 
-uintptr_t load_addr;
-
-int called = 0;
-
 __attribute__((no_instrument_function))
-int get_load_addr(char* path) {
+uintptr_t get_load_addr(char* path) {
     FILE *maps = fopen("/proc/self/maps", "r");
     if (maps == NULL) {
         perror("fopen");
@@ -24,12 +20,10 @@ int get_load_addr(char* path) {
 
         // If pathname is not empty and it contains the path of the executable
         if (*pathname && strstr(pathname, path)) {
-            load_addr = start;
-            break;
+            fclose(maps);
+            return start;
         }
     }
-
-    fclose(maps);
 }
 
 
@@ -54,6 +48,9 @@ dump_func(void* map, uintptr_t func_addr) {
     }
 }
 
+int called = 0;
+uintptr_t load_addr;
+
 void __attribute__((no_instrument_function))
 __cyg_profile_func_enter (void *this_fn, void *call_site)
 {
@@ -74,8 +71,9 @@ __cyg_profile_func_enter (void *this_fn, void *call_site)
         }
         strncpy(exe, basename(path), sizeof(exe));
 
-        get_load_addr(path);
+        load_addr = get_load_addr(path);
     }
+
     void *addr2func = get_addr2func("/home/jp31281/ftrace/test");
     dump_func(addr2func, (uintptr_t) this_fn - load_addr);
 }
