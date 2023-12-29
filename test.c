@@ -24,6 +24,10 @@ int dump_pointed_val_of(int* ptr) {
     printf("pointed val : %d\n", *ptr);
 }
 
+int dump_pointed_twice(int** ptr) {
+    printf("%d\n", **ptr);
+}
+
 int main() {
     callee2(5000000000000, 16, 52, 65);
 
@@ -31,6 +35,6 @@ int main() {
     int *hoge_p = &hoge;
     dump_pointed_val_of(hoge_p);
 
-    *hoge_p = 10;
-    dump_pointed_val_of(hoge_p);
+    int **hoge_pp = &hoge_p;
+    dump_pointed_twice(hoge_pp);
 }

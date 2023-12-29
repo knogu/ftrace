@@ -27,7 +27,7 @@ uintptr_t get_load_addr(char* path) {
 }
 
 void __attribute__((no_instrument_function))
-dump_value(Type typ, void* abs_addr) {
+dump_value(Type typ, void* abs_addr) { // abs_addr is the address at which the dumped value is stored
     printf("actual value: ");
     if (strcmp(typ.name, "int") == 0) {
         printf("%d", *((int*) abs_addr));
@@ -38,11 +38,10 @@ dump_value(Type typ, void* abs_addr) {
     } else if (strcmp(typ.name, "char") == 0) {
         printf("%s", (char*) abs_addr);
     } else if (strcmp(typ.name, "Ptr") == 0) {
-        int** ptr_to_ptr_to_int = (int**) abs_addr; // Pointer to "pointer to int"
-        int* ptr_to_int = *ptr_to_ptr_to_int; // Pointer to int
-        printf("%p -> ", (void*)ptr_to_int);
-        int int_val = *ptr_to_int; // int
-        printf("%d", int_val);
+        void** ptr_to_ptr = (void**) abs_addr; // E.g., When Ptr[int], this is a pointer to "pointer to int"
+        void* ptr = *ptr_to_ptr; // E.g., When Ptr[int], this is a pointer to int
+        printf("%p -> ", (void*)ptr);
+        dump_value(*typ.pointed, ptr);
     }
 }
 
