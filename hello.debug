@@ -1,0 +1,425 @@
+
+DWARF section [29] '.debug_info' at offset 0x306b:
+ [Offset]
+ Compilation unit at offset 0:
+ Version: 4, Abbreviation section offset: 0, Address size: 8, Offset size: 4
+ [     b]  compile_unit         abbrev: 1
+           producer             (strp) "GNU C17 9.4.0 -mtune=generic -march=x86-64 -g -O0 -finstrument-functions -fasynchronous-unwind-tables -fstack-protector-strong -fstack-clash-protection -fcf-protection"
+           language             (data1) C99 (12)
+           name                 (strp) "hello.c"
+           comp_dir             (strp) "/home/jp31281/ftrace"
+           low_pc               (addr) +0x00000000000011a9 <callee>
+           high_pc              (data8) 200 (+0x0000000000001271)
+           stmt_list            (sec_offset) 0
+ [    2d]    typedef              abbrev: 2
+             name                 (strp) "size_t"
+             decl_file            (data1) stddef.h (2)
+             decl_line            (data1) 209
+             decl_column          (data1) 23
+             type                 (ref4) [    39]
+ [    39]    base_type            abbrev: 3
+             byte_size            (data1) 8
+             encoding             (data1) unsigned (7)
+             name                 (strp) "long unsigned int"
+ [    40]    base_type            abbrev: 3
+             byte_size            (data1) 4
+             encoding             (data1) unsigned (7)
+             name                 (strp) "unsigned int"
+ [    47]    pointer_type         abbrev: 4
+             byte_size            (data1) 8
+ [    49]    base_type            abbrev: 3
+             byte_size            (data1) 1
+             encoding             (data1) unsigned_char (8)
+             name                 (strp) "unsigned char"
+ [    50]    base_type            abbrev: 3
+             byte_size            (data1) 2
+             encoding             (data1) unsigned (7)
+             name                 (strp) "short unsigned int"
+ [    57]    base_type            abbrev: 3
+             byte_size            (data1) 1
+             encoding             (data1) signed_char (6)
+             name                 (strp) "signed char"
+ [    5e]    base_type            abbrev: 3
+             byte_size            (data1) 2
+             encoding             (data1) signed (5)
+             name                 (strp) "short int"
+ [    65]    base_type            abbrev: 5
+             byte_size            (data1) 4
+             encoding             (data1) signed (5)
+             name                 (string) "int"
+ [    6c]    base_type            abbrev: 3
+             byte_size            (data1) 8
+             encoding             (data1) signed (5)
+             name                 (strp) "long int"
+ [    73]    typedef              abbrev: 2
+             name                 (strp) "__off_t"
+             decl_file            (data1) types.h (3)
+             decl_line            (data1) 152
+             decl_column          (data1) 25
+             type                 (ref4) [    6c]
+ [    7f]    typedef              abbrev: 2
+             name                 (strp) "__off64_t"
+             decl_file            (data1) types.h (3)
+             decl_line            (data1) 153
+             decl_column          (data1) 27
+             type                 (ref4) [    6c]
+ [    8b]    pointer_type         abbrev: 6
+             byte_size            (data1) 8
+             type                 (ref4) [    91]
+ [    91]    base_type            abbrev: 3
+             byte_size            (data1) 1
+             encoding             (data1) signed_char (6)
+             name                 (strp) "char"
+ [    98]    const_type           abbrev: 7
+             type                 (ref4) [    91]
+ [    9d]    structure_type       abbrev: 8
+             name                 (strp) "_IO_FILE"
+             byte_size            (data1) 216
+             decl_file            (data1) struct_FILE.h (4)
+             decl_line            (data1) 49
+             decl_column          (data1) 8
+             sibling              (ref4) [   224]
+ [    aa]      member               abbrev: 9
+               name                 (strp) "_flags"
+               decl_file            (data1) struct_FILE.h (4)
+               decl_line            (data1) 51
+               decl_column          (data1) 7
+               type                 (ref4) [    65]
+               data_member_location (data1) 0
+ [    b7]      member               abbrev: 9
+               name                 (strp) "_IO_read_ptr"
+               decl_file            (data1) struct_FILE.h (4)
+               decl_line            (data1) 54
+               decl_column          (data1) 9
+               type                 (ref4) [    8b]
+               data_member_location (data1) 8
+ [    c4]      member               abbrev: 9
+               name                 (strp) "_IO_read_end"
+               decl_file            (data1) struct_FILE.h (4)
+               decl_line            (data1) 55
+               decl_column          (data1) 9
+               type                 (ref4) [    8b]
+               data_member_location (data1) 10
+ [    d1]      member               abbrev: 9
+               name                 (strp) "_IO_read_base"
+               decl_file            (data1) struct_FILE.h (4)
+               decl_line            (data1) 56
+               decl_column          (data1) 9
+               type                 (ref4) [    8b]
+               data_member_location (data1) 18
+ [    de]      member               abbrev: 9
+               name                 (strp) "_IO_write_base"
+               decl_file            (data1) struct_FILE.h (4)
+               decl_line            (data1) 57
+               decl_column          (data1) 9
+               type                 (ref4) [    8b]
+               data_member_location (data1) 20
+ [    eb]      member               abbrev: 9
+               name                 (strp) "_IO_write_ptr"
+               decl_file            (data1) struct_FILE.h (4)
+               decl_line            (data1) 58
+               decl_column          (data1) 9
+               type                 (ref4) [    8b]
+               data_member_location (data1) 28
+ [    f8]      member               abbrev: 9
+               name                 (strp) "_IO_write_end"
+               decl_file            (data1) struct_FILE.h (4)
+               decl_line            (data1) 59
+               decl_column          (data1) 9
+               type                 (ref4) [    8b]
+               data_member_location (data1) 30
+ [   105]      member               abbrev: 9
+               name                 (strp) "_IO_buf_base"
+               decl_file            (data1) struct_FILE.h (4)
+               decl_line            (data1) 60
+               decl_column          (data1) 9
+               type                 (ref4) [    8b]
+               data_member_location (data1) 38
+ [   112]      member               abbrev: 9
+               name                 (strp) "_IO_buf_end"
+               decl_file            (data1) struct_FILE.h (4)
+               decl_line            (data1) 61
+               decl_column          (data1) 9
+               type                 (ref4) [    8b]
+               data_member_location (data1) 40
+ [   11f]      member               abbrev: 9
+               name                 (strp) "_IO_save_base"
+               decl_file            (data1) struct_FILE.h (4)
+               decl_line            (data1) 64
+               decl_column          (data1) 9
+               type                 (ref4) [    8b]
+               data_member_location (data1) 48
+ [   12c]      member               abbrev: 9
+               name                 (strp) "_IO_backup_base"
+               decl_file            (data1) struct_FILE.h (4)
+               decl_line            (data1) 65
+               decl_column          (data1) 9
+               type                 (ref4) [    8b]
+               data_member_location (data1) 50
+ [   139]      member               abbrev: 9
+               name                 (strp) "_IO_save_end"
+               decl_file            (data1) struct_FILE.h (4)
+               decl_line            (data1) 66
+               decl_column          (data1) 9
+               type                 (ref4) [    8b]
+               data_member_location (data1) 58
+ [   146]      member               abbrev: 9
+               name                 (strp) "_markers"
+               decl_file            (data1) struct_FILE.h (4)
+               decl_line            (data1) 68
+               decl_column          (data1) 22
+               type                 (ref4) [   23d]
+               data_member_location (data1) 60
+ [   153]      member               abbrev: 9
+               name                 (strp) "_chain"
+               decl_file            (data1) struct_FILE.h (4)
+               decl_line            (data1) 70
+               decl_column          (data1) 20
+               type                 (ref4) [   243]
+               data_member_location (data1) 68
+ [   160]      member               abbrev: 9
+               name                 (strp) "_fileno"
+               decl_file            (data1) struct_FILE.h (4)
+               decl_line            (data1) 72
+               decl_column          (data1) 7
+               type                 (ref4) [    65]
+               data_member_location (data1) 70
+ [   16d]      member               abbrev: 9
+               name                 (strp) "_flags2"
+               decl_file            (data1) struct_FILE.h (4)
+               decl_line            (data1) 73
+               decl_column          (data1) 7
+               type                 (ref4) [    65]
+               data_member_location (data1) 74
+ [   17a]      member               abbrev: 9
+               name                 (strp) "_old_offset"
+               decl_file            (data1) struct_FILE.h (4)
+               decl_line            (data1) 74
+               decl_column          (data1) 11
+               type                 (ref4) [    73]
+               data_member_location (data1) 78
+ [   187]      member               abbrev: 9
+               name                 (strp) "_cur_column"
+               decl_file            (data1) struct_FILE.h (4)
+               decl_line            (data1) 77
+               decl_column          (data1) 18
+               type                 (ref4) [    50]
+               data_member_location (data1) 80
+ [   194]      member               abbrev: 9
+               name                 (strp) "_vtable_offset"
+               decl_file            (data1) struct_FILE.h (4)
+               decl_line            (data1) 78
+               decl_column          (data1) 15
+               type                 (ref4) [    57]
+               data_member_location (data1) 82
+ [   1a1]      member               abbrev: 9
+               name                 (strp) "_shortbuf"
+               decl_file            (data1) struct_FILE.h (4)
+               decl_line            (data1) 79
+               decl_column          (data1) 8
+               type                 (ref4) [   249]
+               data_member_location (data1) 83
+ [   1ae]      member               abbrev: 9
+               name                 (strp) "_lock"
+               decl_file            (data1) struct_FILE.h (4)
+               decl_line            (data1) 81
+               decl_column          (data1) 15
+               type                 (ref4) [   259]
+               data_member_location (data1) 88
+ [   1bb]      member               abbrev: 9
+               name                 (strp) "_offset"
+               decl_file            (data1) struct_FILE.h (4)
+               decl_line            (data1) 89
+               decl_column          (data1) 13
+               type                 (ref4) [    7f]
+               data_member_location (data1) 90
+ [   1c8]      member               abbrev: 9
+               name                 (strp) "_codecvt"
+               decl_file            (data1) struct_FILE.h (4)
+               decl_line            (data1) 91
+               decl_column          (data1) 23
+               type                 (ref4) [   264]
+               data_member_location (data1) 98
+ [   1d5]      member               abbrev: 9
+               name                 (strp) "_wide_data"
+               decl_file            (data1) struct_FILE.h (4)
+               decl_line            (data1) 92
+               decl_column          (data1) 25
+               type                 (ref4) [   26f]
+               data_member_location (data1) a0
+ [   1e2]      member               abbrev: 9
+               name                 (strp) "_freeres_list"
+               decl_file            (data1) struct_FILE.h (4)
+               decl_line            (data1) 93
+               decl_column          (data1) 20
+               type                 (ref4) [   243]
+               data_member_location (data1) a8
+ [   1ef]      member               abbrev: 9
+               name                 (strp) "_freeres_buf"
+               decl_file            (data1) struct_FILE.h (4)
+               decl_line            (data1) 94
+               decl_column          (data1) 9
+               type                 (ref4) [    47]
+               data_member_location (data1) b0
+ [   1fc]      member               abbrev: 9
+               name                 (strp) "__pad5"
+               decl_file            (data1) struct_FILE.h (4)
+               decl_line            (data1) 95
+               decl_column          (data1) 10
+               type                 (ref4) [    2d]
+               data_member_location (data1) b8
+ [   209]      member               abbrev: 9
+               name                 (strp) "_mode"
+               decl_file            (data1) struct_FILE.h (4)
+               decl_line            (data1) 96
+               decl_column          (data1) 7
+               type                 (ref4) [    65]
+               data_member_location (data1) c0
+ [   216]      member               abbrev: 9
+               name                 (strp) "_unused2"
+               decl_file            (data1) struct_FILE.h (4)
+               decl_line            (data1) 98
+               decl_column          (data1) 8
+               type                 (ref4) [   275]
+               data_member_location (data1) c4
+ [   224]    typedef              abbrev: 2
+             name                 (strp) "FILE"
+             decl_file            (data1) FILE.h (5)
+             decl_line            (data1) 7
+             decl_column          (data1) 25
+             type                 (ref4) [    9d]
+ [   230]    typedef              abbrev: 10
+             name                 (strp) "_IO_lock_t"
+             decl_file            (data1) struct_FILE.h (4)
+             decl_line            (data1) 43
+             decl_column          (data1) 14
+ [   238]    structure_type       abbrev: 11
+             name                 (strp) "_IO_marker"
+             declaration          (flag_present) yes
+ [   23d]    pointer_type         abbrev: 6
+             byte_size            (data1) 8
+             type                 (ref4) [   238]
+ [   243]    pointer_type         abbrev: 6
+             byte_size            (data1) 8
+             type                 (ref4) [    9d]
+ [   249]    array_type           abbrev: 12
+             type                 (ref4) [    91]
+             sibling              (ref4) [   259]
+ [   252]      subrange_type        abbrev: 13
+               type                 (ref4) [    39]
+               upper_bound          (data1) 0
+ [   259]    pointer_type         abbrev: 6
+             byte_size            (data1) 8
+             type                 (ref4) [   230]
+ [   25f]    structure_type       abbrev: 11
+             name                 (strp) "_IO_codecvt"
+             declaration          (flag_present) yes
+ [   264]    pointer_type         abbrev: 6
+             byte_size            (data1) 8
+             type                 (ref4) [   25f]
+ [   26a]    structure_type       abbrev: 11
+             name                 (strp) "_IO_wide_data"
+             declaration          (flag_present) yes
+ [   26f]    pointer_type         abbrev: 6
+             byte_size            (data1) 8
+             type                 (ref4) [   26a]
+ [   275]    array_type           abbrev: 12
+             type                 (ref4) [    91]
+             sibling              (ref4) [   285]
+ [   27e]      subrange_type        abbrev: 13
+               type                 (ref4) [    39]
+               upper_bound          (data1) 19
+ [   285]    variable             abbrev: 14
+             name                 (strp) "stdin"
+             decl_file            (data1) stdio.h (6)
+             decl_line            (data1) 137
+             decl_column          (data1) 14
+             type                 (ref4) [   291]
+             external             (flag_present) yes
+             declaration          (flag_present) yes
+ [   291]    pointer_type         abbrev: 6
+             byte_size            (data1) 8
+             type                 (ref4) [   224]
+ [   297]    variable             abbrev: 14
+             name                 (strp) "stdout"
+             decl_file            (data1) stdio.h (6)
+             decl_line            (data1) 138
+             decl_column          (data1) 14
+             type                 (ref4) [   291]
+             external             (flag_present) yes
+             declaration          (flag_present) yes
+ [   2a3]    variable             abbrev: 14
+             name                 (strp) "stderr"
+             decl_file            (data1) stdio.h (6)
+             decl_line            (data1) 139
+             decl_column          (data1) 14
+             type                 (ref4) [   291]
+             external             (flag_present) yes
+             declaration          (flag_present) yes
+ [   2af]    variable             abbrev: 14
+             name                 (strp) "sys_nerr"
+             decl_file            (data1) sys_errlist.h (7)
+             decl_line            (data1) 26
+             decl_column          (data1) 12
+             type                 (ref4) [    65]
+             external             (flag_present) yes
+             declaration          (flag_present) yes
+ [   2bb]    array_type           abbrev: 12
+             type                 (ref4) [   2d1]
+             sibling              (ref4) [   2c6]
+ [   2c4]      subrange_type        abbrev: 15
+ [   2c6]    const_type           abbrev: 7
+             type                 (ref4) [   2bb]
+ [   2cb]    pointer_type         abbrev: 6
+             byte_size            (data1) 8
+             type                 (ref4) [    98]
+ [   2d1]    const_type           abbrev: 7
+             type                 (ref4) [   2cb]
+ [   2d6]    variable             abbrev: 14
+             name                 (strp) "sys_errlist"
+             decl_file            (data1) sys_errlist.h (7)
+             decl_line            (data1) 27
+             decl_column          (data1) 26
+             type                 (ref4) [   2c6]
+             external             (flag_present) yes
+             declaration          (flag_present) yes
+ [   2e2]    subprogram           abbrev: 16
+             external             (flag_present) yes
+             name                 (strp) "main"
+             decl_file            (data1) hello.c (1)
+             decl_line            (data1) 8
+             decl_column          (data1) 5
+             type                 (ref4) [    65]
+             low_pc               (addr) +0x0000000000001213 <main>
+             high_pc              (data8) 94 (+0x0000000000001271)
+             frame_base           (exprloc) 
+              [ 0] call_frame_cfa
+             GNU_all_tail_call_sites (flag_present) yes
+ [   300]    subprogram           abbrev: 17
+             external             (flag_present) yes
+             name                 (strp) "callee"
+             decl_file            (data1) hello.c (1)
+             decl_line            (data1) 3
+             decl_column          (data1) 6
+             prototyped           (flag_present) yes
+             low_pc               (addr) +0x00000000000011a9 <callee>
+             high_pc              (data8) 106 (+0x0000000000001213 <main>)
+             frame_base           (exprloc) 
+              [ 0] call_frame_cfa
+             GNU_all_tail_call_sites (flag_present) yes
+ [   31a]      formal_parameter     abbrev: 18
+               name                 (string) "msg"
+               decl_file            (data1) hello.c (1)
+               decl_line            (data1) 3
+               decl_column          (data1) 19
+               type                 (ref4) [    8b]
+               location             (exprloc) 
+                [ 0] fbreg -24
+ [   329]      formal_parameter     abbrev: 18
+               name                 (string) "num"
+               decl_file            (data1) hello.c (1)
+               decl_line            (data1) 3
+               decl_column          (data1) 28
+               type                 (ref4) [    65]
+               location             (exprloc) 
+                [ 0] fbreg -28
