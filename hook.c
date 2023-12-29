@@ -41,13 +41,22 @@ dump_func(void* map, uintptr_t func_addr, void* frame_addr) {
         }
 
         printf("name: %s\n", arg.name);
-        printf("bytes_cnt: %llu\n", arg.bytes_cnt);
-        printf("location: %lld\n", arg.location);
+        printf("bytes_cnt: %lu\n", arg.bytes_cnt);
+        printf("location: %ld\n", arg.location);
         printf("type_name: %s\n", arg.type_name);
         // dinfoで得られるoffset の値 + 16、ということ？
         // https://qiita.com/mhiramat/items/8df17f5113434e93ff0c
         void *abs_addr = frame_addr + 16 + arg.location;
-        printf("actual value: %d", *((int*) abs_addr));
+        if (strcmp(arg.type_name, "int") == 0) {
+            printf("actual value: %d", *((int*) abs_addr));
+        } else if (strcmp(arg.type_name, "long long int") == 0) {
+            printf("actual value of long long: %lld", *((long long*) abs_addr));
+        } else if (strcmp(arg.type_name, "long int") == 0) {
+            printf("actual value of long: %ld", *((long*) abs_addr));
+        } else if (strcmp(arg.type_name, "char") == 0) {
+            printf("actual value of char: %s", (char*) abs_addr);
+        }
+
         printf("\n\n");
     }
 }
@@ -74,7 +83,7 @@ __cyg_profile_func_enter (void *this_fn, void *call_site)
         load_addr = get_load_addr(path);
         addr2func = get_addr2func(path);
     }
-    
+
     dump_func(addr2func, (uintptr_t) this_fn - load_addr, __builtin_frame_address(1));
 }
 

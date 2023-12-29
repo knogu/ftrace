@@ -16,10 +16,10 @@ void callee(char* msg, int num, struct Person person, int* arr) {
     printf("\n");
 }
 
-void callee2(int num, int num2, long nm3, char ch){
-    printf("callee 2 got called with %d, %d, %d, %d\n", num, num2, nm3, ch);
+void callee2(long long num, int num2, long nm3, char ch){
+    printf("callee 2 got called with %lld, %d, %d, %d\n", num, num2, nm3, ch);
 }
 
 int main() {
-    callee2(8, 16, 52, 1);
+    callee2(5000000000000, 16, 52, 65);
 }
