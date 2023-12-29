@@ -1,0 +1,3 @@
+/home/jp31281/ftrace/cmake-build-debug/CMakeFiles/ftrace.dir
+/home/jp31281/ftrace/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/jp31281/ftrace/cmake-build-debug/CMakeFiles/rebuild_cache.dir
