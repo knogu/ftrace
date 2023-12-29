@@ -10,6 +10,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/home/jp31281/ftrace/hello.c" "CMakeFiles/ftrace.dir/hello.c.o" "gcc" "CMakeFiles/ftrace.dir/hello.c.o.d"
   "/home/jp31281/ftrace/hook.c" "CMakeFiles/ftrace.dir/hook.c.o" "gcc" "CMakeFiles/ftrace.dir/hook.c.o.d"
+  "/home/jp31281/ftrace/test.c" "CMakeFiles/ftrace.dir/test.c.o" "gcc" "CMakeFiles/ftrace.dir/test.c.o.d"
   )
 
 # Targets to which this target links which contain Fortran sources.

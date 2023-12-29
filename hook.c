@@ -55,6 +55,8 @@ dump_func(void* map, uintptr_t func_addr, void* frame_addr) {
             printf("actual value of long: %ld", *((long*) abs_addr));
         } else if (strcmp(arg.type_name, "char") == 0) {
             printf("actual value of char: %s", (char*) abs_addr);
+        } else if (strcmp(arg.type_name, "Ptr[int]") == 0) {
+            printf("actual value of ptr: %p", (void *) abs_addr);
         }
 
         printf("\n\n");

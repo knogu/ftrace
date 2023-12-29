@@ -82,6 +82,12 @@
 		<Unit filename="/home/jp31281/ftrace/hook.c">
 			<Option target="ftrace"/>
 		</Unit>
+		<Unit filename="/home/jp31281/ftrace/test.c">
+			<Option target="ftrace"/>
+		</Unit>
+		<Unit filename="/home/jp31281/ftrace/test.h">
+			<Option target="ftrace"/>
+		</Unit>
 		<Unit filename="/home/jp31281/ftrace/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>

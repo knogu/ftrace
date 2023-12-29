@@ -1,1 +1,1 @@
-/usr/bin/cc CMakeFiles/ftrace.dir/hello.c.o CMakeFiles/ftrace.dir/hook.c.o -o ftrace 
+/usr/bin/cc CMakeFiles/ftrace.dir/hello.c.o CMakeFiles/ftrace.dir/hook.c.o CMakeFiles/ftrace.dir/test.c.o -o ftrace 
