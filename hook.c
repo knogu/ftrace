@@ -28,7 +28,7 @@ uintptr_t get_load_addr(char* path) {
 
 
 void __attribute__((no_instrument_function))
-dump_func(void* map, uintptr_t func_addr) {
+dump_func(void* map, uintptr_t func_addr, void* frame_addr) {
     printf("funcname: %s\n", get_funcname(map, func_addr));
     size_t len = get_arg_cnt_from_func_addr(map, func_addr);
 
@@ -44,7 +44,11 @@ dump_func(void* map, uintptr_t func_addr) {
         printf("bytes_cnt: %llu\n", arg.bytes_cnt);
         printf("location: %lld\n", arg.location);
         printf("type_name: %s\n", arg.type_name);
-        printf("\n");
+        // dinfoで得られるoffset の値 + 16、ということ？
+        // https://qiita.com/mhiramat/items/8df17f5113434e93ff0c
+        void *abs_addr = frame_addr + 16 + arg.location;
+        printf("actual value: %d", *((int*) abs_addr));
+        printf("\n\n");
     }
 }
 
@@ -54,12 +58,6 @@ uintptr_t load_addr;
 void __attribute__((no_instrument_function))
 __cyg_profile_func_enter (void *this_fn, void *call_site)
 {
-    void *frame = __builtin_frame_address(1);
-    void *frame5 = frame - 4;
-    printf("a=%d\n", *(int*)frame5);
-    // dinfoで得られるoffset の値 + 16、ということ？
-    // https://qiita.com/mhiramat/items/8df17f5113434e93ff0c
-
     if (called == 0) {
         called = 1;
 
@@ -75,7 +73,7 @@ __cyg_profile_func_enter (void *this_fn, void *call_site)
     }
 
     void *addr2func = get_addr2func("/home/jp31281/ftrace/test");
-    dump_func(addr2func, (uintptr_t) this_fn - load_addr);
+    dump_func(addr2func, (uintptr_t) this_fn - load_addr, __builtin_frame_address(1));
 }
 
 void __attribute__((no_instrument_function))
