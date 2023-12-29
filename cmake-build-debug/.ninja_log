@@ -1,9 +1,0 @@
-# ninja log v5
-74	110	1701589603738664735	CMakeFiles/ftrace.dir/hello.c.o	10ef75d420711f3e
-173	227	1701589603854673582	CMakeFiles/ftrace.dir/hashtable.c.o	3a97c5cbb5d0d390
-1	72	1701589603702661989	CMakeFiles/ftrace.dir/get_real.c.o	61b7224ddc58fb73
-110	173	1701589603802669616	CMakeFiles/ftrace.dir/hook_only.c.o	4a08b2d38fadf296
-1	195	1701589666291435117	CMakeFiles/ftrace.dir/get_real.c.o	36a5921c44a9c237
-195	319	1701589666415444575	CMakeFiles/ftrace.dir/hello.c.o	1e7d6f8646de5eee
-320	529	1701589666627460743	CMakeFiles/ftrace.dir/hook_only.c.o	dd51f26d2ad25fe7
-529	604	1701589666703466540	CMakeFiles/ftrace.dir/hashtable.c.o	a2b49b3a629b1eb4

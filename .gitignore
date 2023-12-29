@@ -5,3 +5,4 @@ res
 libd*
 *.S
 test
+cmake-build-debug
