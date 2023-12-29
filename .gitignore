@@ -1,3 +1,7 @@
 .idea*
+.gimli*
 *.so
 res
+libd*
+*.S
+test
