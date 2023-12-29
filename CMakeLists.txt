@@ -4,7 +4,6 @@ project(ftrace C)
 set(CMAKE_C_STANDARD 11)
 
 add_executable(ftrace
-        get_real.c
         hello.c
         hook_only.c
         hashtable.h
