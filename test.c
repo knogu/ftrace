@@ -4,6 +4,7 @@
 struct Person {
     int age;
     bool is_man;
+    int* power;
 };
 
 void callee(char* msg, int num, struct Person person, int* arr) {
@@ -29,6 +30,11 @@ int dump_pointed_twice(int** ptr) {
 }
 
 int main() {
+    int arr[3] = {1, 2, 3};
+    int power_val = 50;
+    struct Person person = {20, true, &power_val};
+    callee("Hi from callee\n", 99, person, arr);
+
     callee2(5000000000000, 16, 52, 65);
 
     int hoge = 5;

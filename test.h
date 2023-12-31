@@ -5,6 +5,10 @@
 typedef struct Type {
     char* name;
     struct Type* pointed;
+    struct Type* struct_first_field;
+    struct Type* struct_next_field;
+    int64_t offset;
+    char* field_name;
 } Type;
 
 typedef struct {

@@ -42,6 +42,20 @@ dump_value(Type typ, void* abs_addr) { // abs_addr is the address at which the d
         void* ptr = *ptr_to_ptr; // E.g., When Ptr[int], this is a pointer to int
         printf("%p -> ", (void*)ptr);
         dump_value(*typ.pointed, ptr);
+    } else if (strcmp(typ.name, "_Bool") == 0) {
+        printf("%d", *((_Bool*)abs_addr));
+    } else if (typ.struct_first_field) {
+        printf("struct name: %s", typ.name);
+        Type* field = typ.struct_first_field;
+        while (field) {
+            printf("\n");
+            printf("field type: %s, ", field->name);
+            printf("field name: %s, ", field->field_name);
+            dump_value(*field, abs_addr + field->offset);
+            field = field->struct_next_field;
+        }
+    } else {
+        printf("%s is not yet to be supported", typ.name);
     }
 }
 

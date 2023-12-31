@@ -7,4 +7,5 @@ add_executable(ftrace
         hello.c
         hook.c
         test.c
+        test_enum.c
 )
